@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.3.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id 'com.diffplug.gradle.spotless' version '4.5.1'
+}
+
+group = 'com.api'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+spotless {
+	java {
+		googleJavaFormat('1.8')
+	}
+}
+
+dependencies {
+	// Spring Framework
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.batch:spring-batch-test'
+	// Salesforce
+	compile group: 'com.force.api', name: 'force-wsc', version: '49.3.0'
+	compile group: 'com.force.api', name: 'force-partner-api', version: '49.3.0'
+
+	// Library
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+	useJUnitPlatform()
+}
