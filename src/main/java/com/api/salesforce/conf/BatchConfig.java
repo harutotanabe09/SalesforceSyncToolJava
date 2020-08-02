@@ -32,7 +32,7 @@ public class BatchConfig {
   }
 
   /**
-   * メインタスクのメソッド <br>
+   * メインタスクのメソッド
    *
    * @return
    */

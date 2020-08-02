@@ -25,9 +25,14 @@ public class BulkSalesforceJob {
    * @throws ConnectionException
    * @throws IOException
    */
-  public void run(String sobjectType, String userName, String password, String sampleFileName)
+  public void run(
+      String sobjectType,
+      String userName,
+      String password,
+      String apiVersion,
+      String sampleFileName)
       throws AsyncApiException, ConnectionException, IOException {
-    BulkConnection connection = getBulkConnection(userName, password);
+    BulkConnection connection = getBulkConnection(userName, password, apiVersion);
     JobInfo job = createJob(sobjectType, connection);
     List<BatchInfo> batchInfoList = createBatchesFromCSVFile(connection, job, sampleFileName);
     closeJob(connection, job.getId());
@@ -107,12 +112,12 @@ public class BulkSalesforceJob {
       } catch (InterruptedException e) {
       }
       log.info("Awaiting results..." + incomplete.size());
-      sleepTime = 6000;
+      sleepTime = 600;
       BatchInfo[] statusList = connection.getBatchInfoList(job.getId()).getBatchInfo();
       for (BatchInfo b : statusList) {
         if (b.getState() == BatchStateEnum.Completed || b.getState() == BatchStateEnum.Failed) {
           if (incomplete.remove(b.getId())) {
-            log.info("BATCH STATUS:\n" + b);
+            //log.info("BATCH STATUS:\n" + b);
           }
         }
       }
@@ -147,12 +152,12 @@ public class BulkSalesforceJob {
    * @throws ConnectionException
    * @throws AsyncApiException
    */
-  private BulkConnection getBulkConnection(String userName, String password)
+  private BulkConnection getBulkConnection(String userName, String password, String apiVersion)
       throws ConnectionException, AsyncApiException {
     ConnectorConfig partnerConfig = new ConnectorConfig();
     partnerConfig.setUsername(userName);
     partnerConfig.setPassword(password);
-    partnerConfig.setAuthEndpoint("https://login.salesforce.com/services/Soap/u/49.0");
+    partnerConfig.setAuthEndpoint("https://login.salesforce.com/services/Soap/u/" + apiVersion);
     // Creating the connection automatically handles login and stores
     // the session in partnerConfig
     new PartnerConnection(partnerConfig);
@@ -165,7 +170,6 @@ public class BulkSalesforceJob {
     // The endpoint for the Bulk API service is the same as for the normal
     // SOAP uri until the /Soap/ part. From here it's '/async/versionNumber'
     String soapEndpoint = partnerConfig.getServiceEndpoint();
-    String apiVersion = "49.0";
     String restEndpoint =
         soapEndpoint.substring(0, soapEndpoint.indexOf("Soap/")) + "async/" + apiVersion;
     config.setRestEndpoint(restEndpoint);

@@ -1,4 +1,4 @@
-# Salesforce Api Tool
+# :star2: Salesforce Api Tool
 REST API client of salesroce for java11 
 
 ## Requirement
@@ -8,11 +8,6 @@ REST API client of salesroce for java11
 * Git
 ```
 
-```
-$ git clone 
-$ npm install
-$ npm run build
-```
 ### Output
 ```
 application.yml
@@ -22,8 +17,14 @@ application.yml
 
 application.yml : login config
 
-# Usage
+### :star: libraries
 
+| library Name                                                 | Descritption       |
+| :----------------------------------------------------------- | :----------------- |
+| [Springframework](https://projects.spring.io/spring-framework/) | Framework          |
+| [Spotless](https://github.com/diffplug/spotless/tree/master/plugin-gradle) | Code Formmatter    |
+| [Lombok Project](https://projectlombok.org/)                 | Java Beans Library |
 
 # Document
+
 Github pages
