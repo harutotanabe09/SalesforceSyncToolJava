@@ -26,6 +26,8 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	testImplementation 'org.springframework.batch:spring-batch-test'
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+
 	// Salesforce
 	compile group: 'com.force.api', name: 'force-wsc', version: '49.3.0'
 	compile group: 'com.force.api', name: 'force-partner-api', version: '49.3.0'

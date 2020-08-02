@@ -1,4 +1,4 @@
-package com.api.salesforce;
+package com.api.salesforce.service;
 
 import com.sforce.async.*;
 import com.sforce.soap.partner.PartnerConnection;
@@ -6,9 +6,12 @@ import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
 import java.io.*;
 import java.util.*;
-import lombok.extern.log4j.Log4j2;
+import lombok.extern.java.Log;
+import org.springframework.stereotype.Service;
 
-@Log4j2
+/** バッチ実行サービス */
+@Log
+@Service
 public class BulkSalesforceJob {
 
   /**
@@ -55,13 +58,14 @@ public class BulkSalesforceJob {
           resultInfo.put(resultHeader.get(i), row.get(i));
         }
         boolean success = Boolean.valueOf(resultInfo.get("Success"));
-        boolean created = Boolean.valueOf(resultInfo.get("Created"));
-        String id = resultInfo.get("Id");
         String error = resultInfo.get("Error");
-        if (success && created) {
-          log.info("Created row with id " + id);
-        } else if (!success) {
-          log.error("Failed with error: " + error);
+        // [Custom logic] エラー内容を出力
+        try (FileWriter file = new FileWriter("bulkerror.log");
+            PrintWriter out = new PrintWriter(new BufferedWriter(file))) {
+          out.println(error);
+        }
+        if (!success) {
+          log.warning("Failed with error: " + error);
         }
       }
     }
