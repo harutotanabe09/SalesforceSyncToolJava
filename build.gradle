@@ -35,6 +35,7 @@ dependencies {
 	// Library
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	compile group: 'com.slack.api', name: 'slack-api-client', version: '0.99.5'
 }
 
 test {

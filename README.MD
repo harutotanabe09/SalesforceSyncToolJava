@@ -27,4 +27,10 @@ application.yml : login config
 
 # Document
 
-Github pages
+Slack 
+https://slack.dev/java-slack-sdk/guides/incoming-webhooks
+
+Salesforce API
+https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_walkthrough.htm
+
+Github pagesz1

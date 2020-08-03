@@ -12,29 +12,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class MyTaskOne implements Tasklet {
 
-    @Autowired
-    BulkSalesforceJob sfdcJob;
+  @Autowired BulkSalesforceJob sfdcJob;
 
-    @Value("${salesforce.login}")
-    private String login;
+  @Value("${salesforce.login}")
+  private String login;
 
-    @Value("${salesforce.password}")
-    private String password;
+  @Value("${salesforce.password}")
+  private String password;
 
-    @Value("${salesforce.apiVersion}")
-    private String apiVersion;
+  @Value("${salesforce.apiVersion}")
+  private String apiVersion;
 
-    /**
-     * ジョブ実行
-     *
-     * @param contribution
-     * @param chunkContext
-     * @return
-     * @throws Exception
-     */
-    public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
-            throws Exception {
-        sfdcJob.run("Account", login, password, apiVersion, "import.csv");
-        return RepeatStatus.FINISHED;
-    }
+  /**
+   * ジョブ実行
+   *
+   * @param contribution
+   * @param chunkContext
+   * @return
+   * @throws Exception
+   */
+  public RepeatStatus execute(StepContribution contribution, ChunkContext chunkContext)
+      throws Exception {
+    sfdcJob.run("Account", login, password, apiVersion, "import.csv");
+    return RepeatStatus.FINISHED;
+  }
 }

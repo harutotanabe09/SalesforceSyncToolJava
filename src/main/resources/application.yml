@@ -6,3 +6,6 @@ salesforce:
   login: ex7477tanabe+01@gmail.com
   password: tanabe1678
   apiVersion: 49.0
+
+slack:
+  api: https://hooks.slack.com/services/TQ9JDMESX/XXXXXXX

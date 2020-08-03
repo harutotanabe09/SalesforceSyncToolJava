@@ -7,12 +7,15 @@ import com.sforce.ws.ConnectorConfig;
 import java.io.*;
 import java.util.*;
 import lombok.extern.java.Log;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /** バッチ実行サービス */
 @Log
 @Service
 public class BulkSalesforceJob {
+
+  @Autowired SlackMessageService slack;
 
   /**
    * Creates a Bulk API job and uploads batches for a CSV file.
@@ -70,6 +73,7 @@ public class BulkSalesforceJob {
           out.println(error);
         }
         if (!success) {
+          slack.message("Failed with error: " + error);
           log.warning("Failed with error: " + error);
         }
       }
@@ -112,12 +116,12 @@ public class BulkSalesforceJob {
       } catch (InterruptedException e) {
       }
       log.info("Awaiting results..." + incomplete.size());
-      sleepTime = 600;
+      sleepTime = 8000;
       BatchInfo[] statusList = connection.getBatchInfoList(job.getId()).getBatchInfo();
       for (BatchInfo b : statusList) {
         if (b.getState() == BatchStateEnum.Completed || b.getState() == BatchStateEnum.Failed) {
           if (incomplete.remove(b.getId())) {
-            //log.info("BATCH STATUS:\n" + b);
+            // log.info("BATCH STATUS:\n" + b);
           }
         }
       }
