@@ -25,6 +25,12 @@ application.yml : login config
 | [Spotless](https://github.com/diffplug/spotless/tree/master/plugin-gradle) | Code Formmatter    |
 | [Lombok Project](https://projectlombok.org/)                 | Java Beans Library |
 
+### :star2: Git Commit Message
+
+feat: xxx という機能を追加
+fix: yyy で発生するバグを修正
+refactor: zzz の機能をリファクタ
+
 # Document
 
 Slack 
