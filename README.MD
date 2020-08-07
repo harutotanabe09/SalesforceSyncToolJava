@@ -27,6 +27,14 @@ application.yml : login config
 
 ### :star2: Git Commit Message
 
+Install Commnad
+
+npx git-cz
+
+Commnad Run
+
+git cz
+
 feat: xxx という機能を追加
 fix: yyy で発生するバグを修正
 refactor: zzz の機能をリファクタ
