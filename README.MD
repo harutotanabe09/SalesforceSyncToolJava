@@ -3,13 +3,13 @@ REST API client of salesroce for java11
 
 ## Requirement
 
-```
+```sh
 * Java11
 * Git
 ```
 
 ### Output
-```
+```sh
 application.yml
 ```
 
@@ -27,20 +27,19 @@ application.yml : login config
 
 ### :star2: Git Commit Message
 
-Install Commnad
+- Install Commnad
 
+```sh
 npx git-cz
+```
 
-Commnad Run
+- :book: Commnad Run
 
-
+```
 git cz
+```
 
-feat: xxx という機能を追加
-fix: yyy で発生するバグを修正
-refactor: zzz の機能をリファクタ
-
-# Document
+##### Document
 
 Slack 
 https://slack.dev/java-slack-sdk/guides/incoming-webhooks
@@ -48,4 +47,6 @@ https://slack.dev/java-slack-sdk/guides/incoming-webhooks
 Salesforce API
 https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_walkthrough.htm
 
-Github pagesz1
+Qiita
+【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話
+
