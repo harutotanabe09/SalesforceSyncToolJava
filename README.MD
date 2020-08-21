@@ -50,7 +50,14 @@ https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asy
 Qiita
 【今日からできる】コミットメッセージに 「プレフィックス」 をつけるだけで、開発効率が上がった話
 
-##### Coding Rule
+##### Npm install
+
+###### npm list
+
+npm list --depth=0 -g
+npm list --depth=0
+
+git-cz@4.7.0
 
 Test Code
-
+rw
